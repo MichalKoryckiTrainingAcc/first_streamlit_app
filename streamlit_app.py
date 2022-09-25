@@ -33,8 +33,6 @@ fruityvice_response = pandas.json_normalize(fruityvice_response.json())
 ### output as table
 streamlit.dataframe(fruityvice_response)
 
-
-
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
@@ -46,3 +44,9 @@ my_cur.execute("select * from fruit_load_list")
 my_data_rows = my_cur.fetchall()
 streamlit.header("The Fruit load list contains")
 streamlit.dataframe(my_data_rows)
+
+
+add_my_fruit =streamlit.text_input("What fruit would you like to add?", "Chaosberry")
+streamlit.write("Thank you for adding ", add_my_fruit)
+
+
